@@ -20,4 +20,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/mapStyles/aubergine.json
+    - assets/mapStyles/dark.json
     - assets/mapStyles/night.json
