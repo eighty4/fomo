@@ -161,21 +161,24 @@ class ActivityPaneContentState extends State<ActivityPaneContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        constraints: const BoxConstraints.expand(),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 100),
-          switchInCurve: Curves.linear,
-          switchOutCurve: Curves.easeInExpo,
-          child: activities == null
-              ? const CircularProgressIndicator()
-              : ListView(
-                  controller: _scrollController,
-                  children: activities!
-                      .map((activity) => ActivityWidget(activity))
-                      .toList(),
-                ),
-        ));
+    return WillPopScope(
+      onWillPop: () => context.read<ActivityTabModel>().setNoOpenActivityPane(),
+      child: Container(
+          constraints: const BoxConstraints.expand(),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 100),
+            switchInCurve: Curves.linear,
+            switchOutCurve: Curves.easeInExpo,
+            child: activities == null
+                ? const CircularProgressIndicator()
+                : ListView(
+                    controller: _scrollController,
+                    children: activities!
+                        .map((activity) => ActivityWidget(activity))
+                        .toList(),
+                  ),
+          )),
+    );
   }
 
   @override
