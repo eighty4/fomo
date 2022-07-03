@@ -122,9 +122,11 @@ class ActivityPaneContentState extends State<ActivityPaneContent> {
     super.initState();
     _scrollController.addListener(_onScroll);
     getActivities().then((activities) {
-      setState(() {
-        this.activities = activities;
-      });
+      if (mounted) {
+        setState(() {
+          this.activities = activities;
+        });
+      }
     });
   }
 
