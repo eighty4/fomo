@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'map.dart';
@@ -41,12 +42,27 @@ class MapAppState extends State<MapApp> {
             right: 0,
             child: MapWrap(),
           ),
-          ActivityTab(activityType: ActivityType.one, bottomOffset: 200),
-          ActivityTab(activityType: ActivityType.two, bottomOffset: 125),
-          ActivityTab(activityType: ActivityType.three, bottomOffset: 50),
+          ActivityTab(activityType: ActivityType.dining, bottomOffset: 160),
+          ActivityTab(activityType: ActivityType.market, bottomOffset: 100),
+          ActivityTab(activityType: ActivityType.music, bottomOffset: 40),
         ],
       ),
     );
+  }
+}
+
+extension IconFn on ActivityType {
+  IconData icon() {
+    switch (this) {
+      case ActivityType.music:
+        return FontAwesomeIcons.music;
+      case ActivityType.dining:
+        return FontAwesomeIcons.utensils;
+      case ActivityType.market:
+        return FontAwesomeIcons.store;
+      default:
+        return FontAwesomeIcons.question;
+    }
   }
 }
 
@@ -70,10 +86,10 @@ class ActivityTab extends StatelessWidget {
       top: isThisPaneOpen
           ? size.height / 2
           : size.height - ActivityTab.buttonSize - bottomOffset,
-      left: !isOtherPaneOpen ? 0 : 0 - ActivityTab.buttonSize,
-      bottom: isThisPaneOpen ? 0 : bottomOffset,
+      left: !isOtherPaneOpen ? -1 : -1 - ActivityTab.buttonSize,
+      bottom: isThisPaneOpen ? -1 : bottomOffset,
       right: isThisPaneOpen
-          ? 0
+          ? -1
           : !isOtherPaneOpen
               ? size.width - ActivityTab.buttonSize
               : size.width,
@@ -88,7 +104,12 @@ class ActivityTab extends StatelessWidget {
           }
         },
         child: Container(
-            color: const Color(0x30FF4081),
+            decoration: const BoxDecoration(
+                border: Border.fromBorderSide(BorderSide(color: Colors.orange)),
+                gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [Colors.black87, Colors.black54])),
             constraints: const BoxConstraints.expand(),
             child: AnimatedSwitcher(
               duration: ActivityTab.animationDuration,
@@ -96,9 +117,11 @@ class ActivityTab extends StatelessWidget {
                   ? const SizedBox.expand()
                   : isThisPaneOpen
                       ? const ActivityPaneContent()
-                      : Text(activityType.label(),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white)),
+                      : FaIcon(
+                          activityType.icon(),
+                          color: Colors.blue,
+                          size: 16,
+                        ),
             )),
       ),
     );
@@ -139,7 +162,6 @@ class ActivityPaneContentState extends State<ActivityPaneContent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: const Color(0x30FF4081),
         constraints: const BoxConstraints.expand(),
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 100),

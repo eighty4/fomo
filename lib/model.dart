@@ -14,22 +14,7 @@ Future<List<Activity>> getActivities() async {
   ];
 }
 
-enum ActivityType { one, two, three }
-
-extension LabelFn on ActivityType {
-  String label() {
-    switch (this) {
-      case ActivityType.one:
-        return "1";
-      case ActivityType.two:
-        return "2";
-      case ActivityType.three:
-        return "3";
-      default:
-        return "?";
-    }
-  }
-}
+enum ActivityType { music, dining, market }
 
 class Activity {
   final String title;
