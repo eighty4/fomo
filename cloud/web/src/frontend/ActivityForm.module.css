@@ -1,0 +1,53 @@
+.form {
+    color: rgba(0, 0, 0, .9);
+}
+
+.form > :first-child {
+    margin-top: 0 !important;
+}
+
+.section {
+    margin-top: 1rem;
+}
+
+.section .label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.section .description {
+    color: rgba(33, 33, 33, .85);
+    display: block;
+    font-size: .8rem;
+    margin-bottom: .5rem;
+}
+
+.section input {
+    font-size: 1.1rem;
+    padding: .35rem .5rem;
+    width: 100%;
+}
+
+.section input::placeholder {
+    font-size: .8rem;
+}
+
+.section input.date {
+    width: 200px;
+}
+
+.section span select {
+    padding: .3rem;
+}
+
+.section p {
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
+    line-height: 2rem;
+}
+
+.section button {
+    font-size: 1.2rem;
+    padding: .3rem 1rem;
+}
