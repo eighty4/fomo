@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "eighty4.fomo",
+      "sha256_cert_fingerprints": [
+        "7E:CB:9E:C0:B8:2A:64:DF:D6:C9:7B:42:A4:37:78:B6:C4:66:04:4C:41:8E:C9:C2:86:DD:2D:07:D7:C1:CB:7D"
+      ]
+    }
+  }
+]
+
